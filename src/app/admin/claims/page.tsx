@@ -40,7 +40,7 @@ export default async function ClaimsPage() {
               {claims.length === 0 ? (
                 <tr>
                   <td colSpan={5} className="p-4 text-center text-muted-foreground">
-                    No claims found. Users haven't claimed any coupons yet.
+                    No claims found. Users haven&lsquo;t claimed any coupons yet.
                   </td>
                 </tr>
               ) : (

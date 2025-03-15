@@ -19,6 +19,7 @@ export default function CouponClaim() {
     try {
       const response = await claimCoupon()
       setResult(response)
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
       setResult({
         success: false,
