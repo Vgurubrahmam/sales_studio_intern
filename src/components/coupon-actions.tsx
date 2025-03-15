@@ -15,7 +15,7 @@ import {
 } from "@/components/ui/alert-dialog"
 import { toggleCouponStatus, deleteCoupon } from "@/lib/actions"
 import { MoreHorizontal, Power, PowerOff, Trash } from "lucide-react"
-import { useToast } from "@/hooks/use-toast"
+import {toast} from 'sonner'
 
 interface CouponActionsProps {
   id: string
@@ -24,7 +24,6 @@ interface CouponActionsProps {
 }
 
 export default function CouponActions({ id, isActive, isClaimed }: CouponActionsProps) {
-  const { toast } = useToast()
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
 
@@ -34,16 +33,9 @@ export default function CouponActions({ id, isActive, isClaimed }: CouponActions
     setIsLoading(false)
 
     if (result.success) {
-      toast({
-        title: isActive ? "Coupon deactivated" : "Coupon activated",
-        description: `The coupon has been ${isActive ? "deactivated" : "activated"} successfully.`,
-      })
+      toast.success(isActive ? "Coupon deactivated" : "Coupon activated", {description : `The coupon has been ${isActive ? "deactivated" : "activated"} successfully.`})
     } else {
-      toast({
-        title: "Error",
-        description: result.error || "Failed to update coupon status",
-        variant: "destructive",
-      })
+      toast.warning('Error', {description : result.error || "Failed to update coupon status"})
     }
   }
 
@@ -54,16 +46,10 @@ export default function CouponActions({ id, isActive, isClaimed }: CouponActions
     setIsDeleteDialogOpen(false)
 
     if (result.success) {
-      toast({
-        title: "Coupon deleted",
-        description: "The coupon has been deleted successfully.",
-      })
+      
+      toast.success('Coupon deleted.', {description : "The coupon has been deleted successfully."})
     } else {
-      toast({
-        title: "Error",
-        description: result.error || "Failed to delete coupon",
-        variant: "destructive",
-      })
+      toast.warning('Error', {description : result.error || "Failed to delete coupon"})
     }
   }
 
